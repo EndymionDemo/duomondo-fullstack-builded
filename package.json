@@ -1,0 +1,17 @@
+{
+  "name": "duomondo-example",
+  "version": "1.0.0",
+  "description": "demo of Duomondo Project using endymion browser with endymion library",
+  "scripts": {
+    "start": "npm run docker && npm run qrcode",
+    "stop": "docker compose down",
+    "qrcode": "node qrcode.js",
+    "docker": "docker compose up -d"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "my-local-ip": "^1.0.0",
+    "qrcode-terminal": "^0.12.0"
+  }
+}
