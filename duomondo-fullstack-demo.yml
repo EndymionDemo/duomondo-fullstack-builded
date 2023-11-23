@@ -1,0 +1,36 @@
+version: "3.9"
+services:
+  frontend:
+    image: nginx:1.17.3-alpine
+    container_name: frontend
+    volumes:
+      - "./duomondo-fullstack-demo/frontend/:/usr/share/nginx/html/"
+
+    ports:
+      - "8086:80"
+
+  backend:
+    image: mcr.microsoft.com/dotnet/aspnet:7.0
+    container_name: backend
+    command: "dotnet ./app/EndymionBackend.dll"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=development
+      - ASPNETCORE_URLS=http://+:80
+    volumes:
+        - "./duomondo-fullstack-demo/backend/:/app"
+    ports:
+      - "3001:80"
+
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: database
+    volumes:
+      - "./duomondo-fullstack-demo/database:/var/opt/mssql/data/"
+    environment:
+      - SA_PASSWORD=#Endy432@
+      - ACCEPT_EULA=Y
+    ports:
+      - "1414:1433"
+
+
+      
