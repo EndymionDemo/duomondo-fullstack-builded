@@ -10,8 +10,31 @@ AR experience build with Angular, NETCore and SqlServer using Endymion Browser a
 - Register an account
 - Collect clues finding Little Spirit
 
+## Try Online
 
-## Getting Started
+You can try duomondo experience online
+
+For run demo you have to perform this step:   
+
+1 - Download with your device (Android) the Endymion Browser apk scanning this qr code and clicking on "Download Beta"        
+    (registration is required)   
+
+![Endymion Browser](https://endymion.tech/endymion-address-qrcode-300x300.png)    
+
+#
+#
+#
+
+2 - Scan this code and enjoy!       
+
+![Endymion Browser](https://endymion.tech/qr-code-address/duomondo-fullstack-demo-300x300.png) 
+
+
+
+#
+#
+#
+## Getting Started on local computer
 
 For run demo you have to perform this step:   
 
@@ -46,7 +69,7 @@ netsh advfirewall firewall add rule name="duomondo-fullstack-database" dir=in ac
 Clone the project, go to the project directory, install dependencies and run demo
 
 ```bash
-git clonehttps://github.com/EndymionDemo/duomondo-fullstack-demo.git
+git clone https://github.com/EndymionDemo/duomondo-fullstack-demo.git
 cd duomondo-fullstack-demo    
 npm install   
 npm run start   
