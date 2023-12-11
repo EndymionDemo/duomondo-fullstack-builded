@@ -5,6 +5,9 @@ services:
     container_name: frontend
     volumes:
       - "./duomondo-fullstack-demo/frontend/:/usr/share/nginx/html/"
+      - type: bind
+        source: ./duomondo-fullstack-demo/nginx/duomondo.conf
+        target: /etc/nginx/conf.d/duomondo.conf
 
     ports:
       - "8086:80"
