@@ -5,13 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/png" href="./assets/images/endymion-logo.png">
   <link rel="stylesheet" href="./assets/css/scan.css" />
-  <script src="./assets/js/endymion.js"></script>
+  <script src="./assets/js/endymion.1.8.5.js"></script>
 </head>
 <body>
        
     <div class="button-container">
         <div id="button"    class="listen"></div>
-        <div id="indietro"  class="indietro">Indietro</div>
     </div>
     <audio id="spiritelloVoice"></audio>
 </body>
@@ -19,6 +18,7 @@
 
 
     window.onload = () =>{
+        endymionDebug();
         var listen = "Ascolta lo spiritello"
         var end = "Concludi"
         var animation = 1;
@@ -34,7 +34,7 @@
 
         let params = (new URL(document.location)).searchParams;
         let indizio = params.get("indizio");
-
+        
 
         switch(parseInt(indizio)){
             case 1:
@@ -66,24 +66,17 @@
         }
 
         button.addEventListener('click', listenToSpirit);
-        indietro.addEventListener('click', (event)=>{
-                    var id = JSON.parse(localStorage.getItem('user')).id;
-                    var host = window.location.hostname;
-                    var port = window.location.port;
-                    var protocol = window.location.protocol;
-                    let url = new URL('/collections/' + id, protocol + host + ':' + port);
-                    window.location.assign(url);
-        })
-        
+         
         spiritelloVoice.addEventListener('ended', ()=>{
             setTimeout(()=>{
                var jwt = localStorage.getItem('jwt');
-               var id = JSON.parse(localStorage.getItem('user')).id;
+               var userId = JSON.parse(localStorage.getItem('user')).id;
                 var host = window.location.hostname;
                 var port = window.location.port;
-                var portBackEnd = 3001;
+                var portBackEnd = 80;
                 var protocol = window.location.protocol;
-                let url = new URL('/api/collezione/registra/indizio', protocol + host + ':' + portBackEnd);
+                var url = new URL('/api/collezione/registra/indizio', protocol + host);
+
                 fetch(url, {
                     method: 'POST',
                     headers: {
@@ -91,13 +84,13 @@
                         'Authorization': 'Bearer ' + jwt
                     },
                     body: JSON.stringify({
-                        UserId: id,
+                        UserId: userId,
                         CollezioneId: 1,
                         IndizioId: parseInt(indizio)
                     })
                 }).then(res => {
-                    // let url = new URL('/collections/' + id, protocol + host + ':' + port);
-                    // window.location.assign(url);
+                    let url = new URL('index.html?indizioId='+ parseInt(indizio), protocol + host);
+                    window.location.assign(url);
                 })
                 
             }, 1000)

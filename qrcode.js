@@ -1,13 +1,13 @@
 var qrcode = require('qrcode-terminal');
 var myLocalIP = require('my-local-ip');
-//var ip = myLocalIP();
-var ip = '172.16.4.3';
+var ip = myLocalIP();
+
 console.log('')
 console.log('')
 console.log('')
 console.log('Home page del gioco')
 console.log('');
-qrcode.generate('http://' + ip + ':8080/index.html', {small: true});
+qrcode.generate('http://' + ip + ':8080', {small: true});
 
 //primo indizio
 console.log('')
